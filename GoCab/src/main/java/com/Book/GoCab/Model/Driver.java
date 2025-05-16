@@ -1,5 +1,4 @@
-package Model;
-
+package com.Book.GoCab.Model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Driver {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +20,7 @@ public class User {
 
     private String name;
 
-    private String phone;
+    private String currentLocation;
 
-    private String location;
+    private boolean available = true;
 }
