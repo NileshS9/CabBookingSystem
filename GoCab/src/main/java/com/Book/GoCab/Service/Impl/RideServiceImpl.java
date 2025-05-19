@@ -56,4 +56,25 @@ public class RideServiceImpl implements RideService {
 
         return savedride;
     }
+
+    @Override
+    public Ride completeRide(Long rideId) {
+
+        Ride ride = rideRepository.findById(rideId)
+                .orElseThrow(() ->new RuntimeException("Ride Not Found"));
+
+        if("Completed".equalsIgnoreCase(ride.getStatus())){
+            throw new RuntimeException("Ride already completed");
+        }
+
+        //Set ride as completed
+        ride.setStatus("Completed");
+
+        //Set driver available again
+        Driver driver = ride.getDriver();
+        driver.setAvailable(true);
+        driverRepository.save(driver);
+
+        return rideRepository.save(ride);
+    }
 }
