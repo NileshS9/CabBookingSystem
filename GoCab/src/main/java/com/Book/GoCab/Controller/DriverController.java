@@ -5,10 +5,9 @@ import com.Book.GoCab.Repository.DriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/drivers")
@@ -22,5 +21,10 @@ public class DriverController {
         driver.setAvailable(true); //set available by default
         Driver saveddriver = driverRepository.save(driver);
         return new ResponseEntity<>(saveddriver, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/all")
+    public List<Driver> getAllDrivers(){
+        return driverRepository.findAll();
     }
 }
