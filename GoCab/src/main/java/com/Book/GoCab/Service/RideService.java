@@ -8,4 +8,5 @@ public interface RideService {
     Ride bookCab(Long userId,String pickup,String drop);
     Ride completeRide(Long rideId);
     List<Ride>getUserRideHistory(Long userId);
+    List<Ride>getDriverRideHistory(Long driverId);
 }
