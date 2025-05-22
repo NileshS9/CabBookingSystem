@@ -77,4 +77,9 @@ public class RideServiceImpl implements RideService {
 
         return rideRepository.save(ride);
     }
+
+    @Override
+    public List<Ride> getUserRideHistory(Long userId) {
+        return rideRepository.findByUserId(userId);
+    }
 }

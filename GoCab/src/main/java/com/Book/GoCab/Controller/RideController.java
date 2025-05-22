@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/rides")
 public class RideController {
@@ -24,5 +26,11 @@ public class RideController {
     public ResponseEntity<Ride> completeRide(@PathVariable Long rideId){
         Ride completedRide =rideService.completeRide(rideId);
         return ResponseEntity.ok(completedRide);
+    }
+
+    @GetMapping("/history/user/{userId}")
+    public ResponseEntity<List<Ride>>getUserRideHistory(@PathVariable Long userId){
+        List<Ride> rides = rideService.getUserRideHistory(userId);
+        return ResponseEntity.ok(rides);
     }
 }
