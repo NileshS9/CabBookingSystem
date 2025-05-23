@@ -79,6 +79,25 @@ public class RideServiceImpl implements RideService {
     }
 
     @Override
+    public Ride cancelRide(Long rideId) {
+        Ride ride = rideRepository.findById(rideId)
+                .orElseThrow(() -> new RuntimeException("Ride not found"));
+
+        if(!ride.getStatus().equalsIgnoreCase("Booked")){
+            throw new RuntimeException("Only booked rides can be cancelled");
+        }
+
+        ride.setStatus("Cancelled");
+
+        //Make the driver available again
+        Driver driver =ride.getDriver();
+        driver.setAvailable(true);
+        driverRepository.save(driver);
+
+        return rideRepository.save(ride);
+    }
+
+    @Override
     public List<Ride> getUserRideHistory(Long userId) {
         return rideRepository.findByUserId(userId);
     }

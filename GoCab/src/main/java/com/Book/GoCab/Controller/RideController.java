@@ -45,4 +45,10 @@ public class RideController {
         List<Ride> rides = rideService.getRidesByStatus(status);
         return ResponseEntity.ok(rides);
    }
+
+   @PutMapping("/{id}/cancel")
+   public ResponseEntity<Ride> cancelRide(@PathVariable Long id){
+        Ride cancelledRide = rideService.cancelRide(id);
+        return ResponseEntity.ok(cancelledRide);
+   }
 }
