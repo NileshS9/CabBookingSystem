@@ -39,4 +39,10 @@ public class RideController {
         List<Ride> rides = rideService.getDriverRideHistory(driverId);
         return ResponseEntity.ok(rides);
     }
+
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<Ride>> getRidesByStatus(@PathVariable String status){
+        List<Ride> rides = rideService.getRidesByStatus(status);
+        return ResponseEntity.ok(rides);
+   }
 }
