@@ -2,6 +2,7 @@ package com.Book.GoCab.Controller;
 
 import com.Book.GoCab.Model.Driver;
 import com.Book.GoCab.Repository.DriverRepository;
+import com.Book.GoCab.Service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,9 @@ public class DriverController {
     @Autowired
     private DriverRepository driverRepository;
 
+    @Autowired
+    private DriverService driverService;
+
     @PostMapping("/add")
     public ResponseEntity<Driver> addDriver(@RequestBody Driver driver){
         driver.setAvailable(true); //set available by default
@@ -27,4 +31,12 @@ public class DriverController {
     public List<Driver> getAllDrivers(){
         return driverRepository.findAll();
     }
+
+    @PostMapping("/register")
+    public ResponseEntity<Driver> registerDriver(@RequestBody Driver driver){
+        Driver savedDriver = driverService.registerDriver(driver);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedDriver);
+    }
+
+
 }
