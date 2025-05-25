@@ -11,4 +11,5 @@ public interface RideService {
     List<Ride>getUserRideHistory(Long userId);
     List<Ride>getDriverRideHistory(Long driverId);
     List<Ride>getRidesByStatus(String status);
+    List<Ride> getAllRides();
 }

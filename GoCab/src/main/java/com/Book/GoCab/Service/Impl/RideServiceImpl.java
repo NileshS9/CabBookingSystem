@@ -111,4 +111,9 @@ public class RideServiceImpl implements RideService {
     public List<Ride> getRidesByStatus(String status) {
         return rideRepository.findByStatus(status);
     }
+
+    @Override
+    public List<Ride> getAllRides(){
+        return rideRepository.findAll();
+    }
 }

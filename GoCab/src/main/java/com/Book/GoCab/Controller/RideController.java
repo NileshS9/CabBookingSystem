@@ -51,4 +51,10 @@ public class RideController {
         Ride cancelledRide = rideService.cancelRide(id);
         return ResponseEntity.ok(cancelledRide);
    }
+
+   @GetMapping("/rides")
+   public ResponseEntity<List<Ride>> getAllRides(){
+        List<Ride> rides =rideService.getAllRides();
+        return ResponseEntity.ok(rides);
+   }
 }
