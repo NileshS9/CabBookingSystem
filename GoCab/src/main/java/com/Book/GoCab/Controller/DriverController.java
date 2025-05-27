@@ -20,13 +20,6 @@ public class DriverController {
     @Autowired
     private DriverService driverService;
 
-    @PostMapping("/add")
-    public ResponseEntity<Driver> addDriver(@RequestBody Driver driver){
-        driver.setAvailable(true); //set available by default
-        Driver saveddriver = driverRepository.save(driver);
-        return new ResponseEntity<>(saveddriver, HttpStatus.CREATED);
-    }
-
     @GetMapping("/all")
     public List<Driver> getAllDrivers(){
         return driverRepository.findAll();
@@ -34,6 +27,7 @@ public class DriverController {
 
     @PostMapping("/register")
     public ResponseEntity<Driver> registerDriver(@RequestBody Driver driver){
+        driver.setAvailable(true); //set available by default
         Driver savedDriver = driverService.registerDriver(driver);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedDriver);
     }
