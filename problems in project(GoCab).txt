@@ -1,0 +1,9 @@
+problems in project
+1.so when i was booking a ride in project i have to created two driver and user after ,
+the frist driver was ravi with currentLocation wadgaon and second drvier was ravindra with 
+currentLocation kothurd. after that i created a user rahul whos currentlocation was kothurd . 
+so the main problem was both driver were available. so after booking the ride the driver
+assigned was ravi who was in wadgoan. so if the driver ravindra is in same place in 
+kothrud where user rahul is present the system assigned the driver who is in different place .
+so as per logic the driver with same location shouldd be assigned to user who is near with 
+ravindra.

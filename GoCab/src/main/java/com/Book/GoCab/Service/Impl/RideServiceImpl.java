@@ -32,16 +32,20 @@ public class RideServiceImpl implements RideService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User Not Found"));
 
-        List<Driver> availableDrivers = driverRepository.findByAvailableTrue();
-        if(availableDrivers.isEmpty()){
-            throw  new RuntimeException("No Drivers available Right Now!");
+        //Find Drivers who are available and at the same Location as the user
+        List<Driver> nearbyDrivers = driverRepository.findByAvailableTrueAndCurrentLocation(pickup);
+        if(nearbyDrivers.isEmpty()){
+            throw  new RuntimeException("No Drivers available Right Now, at your Location");
         }
 
-        Driver driver = availableDrivers.get(0);
+        //pickup the first one.
+        Driver driver = nearbyDrivers.get(0);
 
+        //Fare calculations
         int distance = new Random().nextInt(10) + 1;
         double fare = distance * 10;
 
+        //ride object
         Ride ride = new Ride();
         ride.setUser(user);
         ride.setDriver(driver);
@@ -50,6 +54,7 @@ public class RideServiceImpl implements RideService {
         ride.setFare(fare);
         ride.setStatus("Booked");
 
+        //save the ride and update the driver.
         Ride savedride = rideRepository.save(ride);
 
         driver.setAvailable(false);
