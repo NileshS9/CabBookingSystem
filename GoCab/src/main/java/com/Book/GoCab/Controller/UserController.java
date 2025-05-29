@@ -20,7 +20,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @GetMapping("/all")
     public List<User>getAllUsers(){
         return userRepository.findAll();

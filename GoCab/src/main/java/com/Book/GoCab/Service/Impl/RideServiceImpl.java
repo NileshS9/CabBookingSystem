@@ -104,16 +104,6 @@ public class RideServiceImpl implements RideService {
     }
 
     @Override
-    public List<Ride> getUserRideHistory(Long userId) {
-        return rideRepository.findByUserId(userId);
-    }
-
-    @Override
-    public List<Ride> getDriverRideHistory(Long driverId) {
-        return rideRepository.findByDriverId(driverId);
-    }
-
-    @Override
     public List<Ride> getRidesByStatus(String status) {
         return rideRepository.findByStatus(status);
     }

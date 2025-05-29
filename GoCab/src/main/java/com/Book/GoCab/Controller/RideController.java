@@ -28,18 +28,6 @@ public class RideController {
         return ResponseEntity.ok(completedRide);
     }
 
-    @GetMapping("/history/user/{userId}")
-    public ResponseEntity<List<Ride>>getUserRideHistory(@PathVariable Long userId){
-        List<Ride> rides = rideService.getUserRideHistory(userId);
-        return ResponseEntity.ok(rides);
-    }
-
-    @GetMapping("/history/driver/{driverId}")
-    public ResponseEntity<List<Ride>>getDriverRideHistory(@PathVariable Long driverId){
-        List<Ride> rides = rideService.getDriverRideHistory(driverId);
-        return ResponseEntity.ok(rides);
-    }
-
     @GetMapping("/status/{status}")
     public ResponseEntity<List<Ride>> getRidesByStatus(@PathVariable String status){
         List<Ride> rides = rideService.getRidesByStatus(status);
